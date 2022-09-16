@@ -28,10 +28,12 @@
 	
 	
 
-# 查看node节点加入的 sha
+# 查看node节点加入的 sha 和 node 加入集群
 	kubeadm token create --print-join-command
+	kubeadm join 192.168.50.61:6443 --cri-socket unix:///var/run/containerd/containerd.sock --token qr0dir.kfuer8ovhhyx6maa --discovery-token-ca-cert-hash sha256:28a80b14f648afe1b884efec0a4cf8131b41333e04c1252790c3e2997e9e85af  
 	
-# 重置 kubeadm
+# 初始化和重置 kubeadm
+	kubeadm init --cri-socket unix:///var/run/containerd/containerd.sock
 	kubeadm reset
 
 # 私有仓部署
