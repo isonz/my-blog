@@ -1,4 +1,4 @@
-# Kubernates 1.24.3 常用命令
+# Kubernates 常用命令
 
 	kubectl get pods -n kube-system -o wide
 	kubectl get pods -n kube-flannel  -o wide
@@ -44,6 +44,60 @@
 	kubectl create secret generic login-harbor --from-file=.dockerconfigjson=/root/.docker/config.json --type=kubernetes.io/dockerconfigjson --namespace=kube-system
 	kubectl get secret login-harbor --output=yaml
 
+
+
+
+# Kubernates 1.24.3 安装
+参考文献：https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/   
+
+1、安装 containerd，参考：https://github.com/containerd/containerd/blob/main/docs/getting-started.md
+	
+	需要安装：
+		1、containerd official binaries， 
+		2、Installing runc
+		3、Installing CNI plugins
+		
+
+   
+2、转发 IPv4 并让 iptables 看到桥接流量
+
+	通过运行 lsmod | grep br_netfilter 来验证 br_netfilter 模块是否已加载。
+	若要显式加载此模块，请运行 sudo modprobe br_netfilter。
+	为了让 Linux 节点的 iptables 能够正确查看桥接流量，请确认 sysctl 配置中的 net.bridge.bridge-nf-call-iptables 设置为 1。例如：
+	
+	cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
+	overlay
+	br_netfilter
+	EOF
+
+	sudo modprobe overlay
+	sudo modprobe br_netfilter
+
+	# 设置所需的 sysctl 参数，参数在重新启动后保持不变
+	cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+	net.bridge.bridge-nf-call-iptables  = 1
+	net.bridge.bridge-nf-call-ip6tables = 1
+	net.ipv4.ip_forward                 = 1
+	EOF
+
+	# 应用 sysctl 参数而不重新启动
+	sudo sysctl --system
+	
+3、将 k8s 的 cgroupDriver设置为systemd，需编辑 KubeletConfiguration 的 cgroupDriver 选项，并将其设置为 systemd。例如：
+	
+	apiVersion: kubelet.config.k8s.io/v1beta1
+	kind: KubeletConfiguration
+	...
+	cgroupDriver: systemd
+	
+4、将 systemd 配置为容器运行时（containerd）的 cgroup 驱动。  
+	
+	vim /etc/containerd/config.toml
+	
+	
+		
+
+ - - -
 
 ![k8s-system](images/k8s-system.jpeg)
 ![k8s-docker](images/k8s-docker.jpg)
