@@ -45,5 +45,5 @@
 	kubectl get secret login-harbor --output=yaml
 
 
-![k8s-system](Kubernetes/images/k8s-system.jpeg)
-![k8s-docker](Kubernetes/images/k8s-docker.jpg)
+![k8s-system](images/k8s-system.jpeg)
+![k8s-docker](images/k8s-docker.jpg)
