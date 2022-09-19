@@ -106,6 +106,15 @@
 	apt-get update
 	apt-get install kubelet kubeadm kubectl
 	apt-mark hold kubelet kubeadm kubectl
+6、运行
+
+	# export KUBECONFIG=/etc/kubernetes/admin.conf
+	mkdir -p $HOME/.kube
+	cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+	chown $(id -u):$(id -g) $HOME/.kube/config
+
+	kubeadm init --cri-socket unix:///var/run/containerd/containerd.sock
+	
 
  - - -
 
