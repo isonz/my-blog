@@ -4,6 +4,15 @@
 参考文献 : https://www.cnblogs.com/lvzhenjiang/p/15147993.html
 
 ---
+查看 K8S 的镜像：
+
+	ctr -n=k8s.io image list
+	或
+	crictl image list 
+	
+	另外：
+	ctr -n=k8s.io container ls
+	ctr -n=k8s.io task ls
 
 帮助：
 
