@@ -63,9 +63,17 @@ https://blog.csdn.net/QW_sunny/article/details/123579157
 	需要安装：
 		1、containerd official binaries， 
 		2、Installing runc
-		3、Installing CNI plugins
+		3、Installing CNI plugins    
 		
-
+	查看runtime-endpoint ：
+	crictl --runtime-endpoint /run/containerd/containerd.sock ps
+	
+	修改：
+	vim /etc/crictl.yaml
+	runtime-endpoint: unix:///var/run/containerd/containerd.sock	
+	image-endpoint: unix:///var/run/containerd/containerd.sock
+	timeout: 10
+	debug: true
    
 2、转发 IPv4 并让 iptables 看到桥接流量
 
