@@ -35,6 +35,10 @@
 # 初始化和重置 kubeadm
 	kubeadm init --cri-socket unix:///var/run/containerd/containerd.sock
 	kubeadm reset
+	
+	# 导出默认初始化配置
+	kubeadm config print init-defaults  > kubeadm-config.yaml
+	kubeadm init --config=kubeadm-config.yaml
 
 # 私有仓部署
 	kubectl create deployment node-test-deployment --image=hub.gigimed.cn:30002/k8s/k8sapp:v1 --port=80 --replicas=1 --namespace=kube-system
@@ -50,7 +54,9 @@
 
 
 # Kubernates 1.24.3 安装
-参考文献：https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/   
+参考文献：   
+https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/     
+https://blog.csdn.net/QW_sunny/article/details/123579157
 
 1、安装 containerd，参考：https://github.com/containerd/containerd/blob/main/docs/getting-started.md
 	
@@ -87,15 +93,29 @@
 	
 3、将 k8s 的 cgroupDriver设置为systemd，需编辑 KubeletConfiguration 的 cgroupDriver 选项，并将其设置为 systemd。例如：
 	
+	# 在版本 1.22 中，如果用户没有在 KubeletConfiguration 中设置 cgroupDriver 字段， kubeadm init 会将它设置为默认值 systemd。
+
+	# 修改
 	apiVersion: kubelet.config.k8s.io/v1beta1
 	kind: KubeletConfiguration
 	...
 	cgroupDriver: systemd
 	
+
+	
 4、将 systemd 配置为容器运行时（containerd）的 cgroup 驱动。  
 	
-	vim /etc/containerd/config.toml
+	# 生成config.toml
+	mkdir -p /etc/containerd
+	containerd config default | tee /etc/containerd/config.toml
 	
+	# 修改
+	vim /etc/containerd/config.toml
+	[plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc]
+	  ...
+	  [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc.options]
+	    SystemdCgroup = true
+
 5、安装 kubeadm、kubelet 和 kubectl
 
 	sudo apt-get update
