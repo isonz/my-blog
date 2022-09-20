@@ -147,10 +147,7 @@ https://blog.csdn.net/QW_sunny/article/details/123579157
 	apt-get install kubelet kubeadm kubectl
 	apt-mark hold kubelet kubeadm kubectl
 	
-6、安装 flannel
-
-	kubectl apply -f https://github.com/coreos/flannel/raw/master/Documentation/kube-flannel.yml
-7、运行
+6、运行
 
 	# export KUBECONFIG=/etc/kubernetes/admin.conf
 	mkdir -p $HOME/.kube
@@ -159,6 +156,11 @@ https://blog.csdn.net/QW_sunny/article/details/123579157
 
 	kubeadm init --pod-network-cidr=10.244.0.0/16 --cri-socket unix:///var/run/containerd/containerd.sock
 	
+7、安装 flannel
+
+	kubectl apply -f https://github.com/coreos/flannel/raw/master/Documentation/kube-flannel.yml
+
+	kubectl get pod -n kube-flannel -o wide
 ---
 
 ## 自动重启脚本
