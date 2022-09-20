@@ -40,8 +40,11 @@
 	# kubectl delete type typename
 	
 	# 重新加入，在node端操作
-	rm /etc/kubernetes/*
+	rm -rf /etc/kubernetes/*
+	rm -rf /var/lib/kubelet/*
+	service containerd restart
 	service kubelet restart
+	
 	kubeadm join 192.168.50.61:6443 .....
 	
 	
@@ -52,18 +55,6 @@
 	# 导出默认初始化配置
 	kubeadm config print init-defaults  > kubeadm-config.yaml
 	kubeadm init --config=kubeadm-config.yaml
-
-# 私有仓部署
-	kubectl create deployment node-test-deployment --image=hub.gigimed.cn:30002/k8s/k8sapp:v1 --port=80 --replicas=1 --namespace=kube-system
-
-
-# 登入私有仓库
-	kubectl create secret docker-registry login-harbor --docker-server=hub.gigimed.cn:30002 --docker-username=ison --docker-password=Ison1234 --namespace=kube-system --dry-run=client -o yaml > login-harbor.yaml
-	# kubectl apply -f login-harbor.yaml
-	kubectl create secret generic login-harbor --from-file=.dockerconfigjson=/root/.docker/config.json --type=kubernetes.io/dockerconfigjson --namespace=kube-system
-	kubectl get secret login-harbor --output=yaml
-
-
 
 
 # Kubernates 1.24.3 安装
@@ -204,3 +195,17 @@ https://blog.csdn.net/QW_sunny/article/details/123579157
 
 ![k8s-system](images/k8s-system.jpeg)
 ![k8s-docker](images/k8s-docker.jpg)
+
+
+
+# 私有仓部署
+	kubectl create deployment node-test-deployment --image=hub.gigimed.cn:30002/k8s/k8sapp:v1 --port=80 --replicas=1 --namespace=kube-system
+
+
+# 登入私有仓库
+	kubectl create secret docker-registry login-harbor --docker-server=hub.gigimed.cn:30002 --docker-username=ison --docker-password=Ison1234 --namespace=kube-system --dry-run=client -o yaml > login-harbor.yaml
+	# kubectl apply -f login-harbor.yaml
+	kubectl create secret generic login-harbor --from-file=.dockerconfigjson=/root/.docker/config.json --type=kubernetes.io/dockerconfigjson --namespace=kube-system
+	kubectl get secret login-harbor --output=yaml
+	
+	
