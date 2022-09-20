@@ -159,6 +159,32 @@ https://blog.csdn.net/QW_sunny/article/details/123579157
 
 	kubeadm init --pod-network-cidr=10.244.0.0/16 --cri-socket unix:///var/run/containerd/containerd.sock
 	
+---
+
+## 自动重启脚本
+
+	#!/bin/bash
+
+	kubeadm reset
+
+	service kubelet stop
+
+	# rm /etc/kubernetes/manifests/kube-controller-manager.yaml
+	# rm /etc/kubernetes/manifests/kube-scheduler.yaml 
+	# rm /etc/kubernetes/manifests/etcd.yaml
+	# rm /etc/kubernetes/manifests/kube-apiserver.yaml
+	# rm -rf /var/lib/etcd
+
+	kubeadm init --pod-network-cidr=10.244.0.0/16 --cri-socket unix:///var/run/containerd/containerd.sock
+
+	# export KUBECONFIG=/etc/kubernetes/admin.conf
+	rm -rf .kube
+	mkdir -p $HOME/.kube
+	cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+	chown $(id -u):$(id -g) $HOME/.kube/config
+
+	kubectl get nodes -n kube-system -o wide
+	kubectl get pod -n kube-system -o wide
 
  - - -
 
