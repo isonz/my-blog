@@ -1,5 +1,6 @@
 # Kubernates 常用命令
 
+	kubectl get pods --all-namespaces -o wide
 	kubectl get pods -n kube-system -o wide
 	kubectl get pods -n kube-flannel  -o wide
 	kubectl get nodes  -o wide
