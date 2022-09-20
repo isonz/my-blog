@@ -194,7 +194,7 @@ https://blog.csdn.net/QW_sunny/article/details/123579157
  - - -
 
 ![k8s-system](images/k8s-system.jpeg)
-![k8s-docker](images/k8s-docker.jpg)
+
 
 # 安装 kubeadm dashboard
 
@@ -259,8 +259,9 @@ https://blog.csdn.net/QW_sunny/article/details/123579157
 	https://192.168.41.47:30001/ 用步骤 7 中得到的 token 登入
 	
 	
-	# kubectl proxy
+	# 设置外网可以访问
 	kubectl proxy --address='0.0.0.0'  --accept-hosts='^*$' --port=8001 
+	# kubectl port-forward -n kubernetes-dashboard --address 0.0.0.0 service/kubernetes-dashboard 8001:443
 	然后访问：http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
 	
 	# 子节点
@@ -284,6 +285,9 @@ https://blog.csdn.net/QW_sunny/article/details/123579157
 		kubectl delete secret kubernetes-dashboard-csrf --namespace=kube-system
 		kubectl delete secret kubernetes-dashboard-key-holder --namespace=kube-system
 	
+	解决kubernetes的dashboard不显示cpu和memory，参考文章：https://blog.csdn.net/xujiamin0022016/article/details/107676240
+	
+![k8s-docker](images/k8s-docker.jpg)
 
 # 私有仓部署
 	kubectl create deployment node-test-deployment --image=hub.gigimed.cn:30002/k8s/k8sapp:v1 --port=80 --replicas=1 --namespace=kube-system
