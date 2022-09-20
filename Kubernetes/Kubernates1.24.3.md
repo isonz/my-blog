@@ -196,7 +196,94 @@ https://blog.csdn.net/QW_sunny/article/details/123579157
 ![k8s-system](images/k8s-system.jpeg)
 ![k8s-docker](images/k8s-docker.jpg)
 
+# 安装 kubeadm dashboard
 
+	1、下载配置文件：
+	wget https://raw.githubusercontent.com/kubernetes/dashboard/v2.5.1/aio/deploy/recommended.yaml
+	
+	2、修改镜像：
+	registry.cn-hangzhou.aliyuncs.com/wuxingge/dashboard:v2.5.1
+	registry.cn-hangzhou.aliyuncs.com/wuxingge/metrics-scraper:v1.0.7
+
+		--- 
+		spec:
+		      securityContext:
+			seccompProfile:
+			  type: RuntimeDefault
+		      containers:
+			- name: kubernetes-dashboard
+			  image: registry.cn-hangzhou.aliyuncs.com/wuxingge/dashboard:v2.5.1
+			  imagePullPolicy: Always
+    			...
+		---
+		spec:
+		      securityContext:
+			seccompProfile:
+			  type: RuntimeDefault
+		      containers:
+			- name: dashboard-metrics-scraper
+			  image: registry.cn-hangzhou.aliyuncs.com/wuxingge/metrics-scraper:v1.0.7
+    			...
+			
+	3、修改service类型为NodePort
+		kind: Service
+		apiVersion: v1
+		metadata:
+		  labels:
+		    k8s-app: kubernetes-dashboard
+		  name: kubernetes-dashboard
+		  namespace: kubernetes-dashboard
+		spec:
+		  type: NodePort
+		  ports:
+		    - port: 443
+		      targetPort: 8443
+		      nodePort: 30001
+		  selector:
+		    k8s-app: kubernetes-dashboard
+		   ...
+	
+	4、创建dashboard管理用户
+	kubectl create serviceaccount dashboard-admin -n kube-system
+	
+	5、绑定集群角色
+	kubectl create clusterrolebinding dashboard-cluster-admin --clusterrole=cluster-admin --serviceaccount=kube-system:dashboard-admin
+
+	6、查看验证：
+	kubectl -n kube-system get serviceaccounts |grep dashboard
+	
+	7、创建token： --duration 3153600000s  指定token过期时间
+	kubectl -n kube-system create token dashboard-admin --duration 3153600000s
+	
+	8、访问
+	https://192.168.41.47:30001/ 用步骤 7 中得到的 token 登入
+	
+	
+	# kubectl proxy
+	kubectl proxy --address='0.0.0.0'  --accept-hosts='^*$' --port=8001 
+	然后访问：http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
+	
+	# 子节点
+	kubectl port-forward -n kubernetes-dashboard --address 0.0.0.0 service/kubernetes-dashboard 8001:443
+
+
+	# 删除
+	kubectl delete -f ./dashboard/kubernetes-dashboard.yaml
+
+	kubectl get pod -o wide  -n kubernetes-dashboard
+	kubectl get svc  -n kubernetes-dashboard
+	
+	# uninstall-dashboard.sh
+		#!/bin/bash
+		kubectl delete deployment kubernetes-dashboard --namespace=kube-system
+		kubectl delete service kubernetes-dashboard  --namespace=kube-system
+		kubectl delete role kubernetes-dashboard-minimal --namespace=kube-system
+		kubectl delete rolebinding kubernetes-dashboard-minimal --namespace=kube-system
+		kubectl delete sa kubernetes-dashboard --namespace=kube-system
+		kubectl delete secret kubernetes-dashboard-certs --namespace=kube-system
+		kubectl delete secret kubernetes-dashboard-csrf --namespace=kube-system
+		kubectl delete secret kubernetes-dashboard-key-holder --namespace=kube-system
+	
 
 # 私有仓部署
 	kubectl create deployment node-test-deployment --image=hub.gigimed.cn:30002/k8s/k8sapp:v1 --port=80 --replicas=1 --namespace=kube-system
