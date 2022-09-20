@@ -164,7 +164,7 @@ https://blog.csdn.net/QW_sunny/article/details/123579157
 	kubectl get pod -n kube-flannel -o wide
 ---
 
-## 自动重启脚本
+## Master端自动重启脚本
 
 	#!/bin/bash
 
@@ -188,6 +188,17 @@ https://blog.csdn.net/QW_sunny/article/details/123579157
 
 	kubectl get nodes -n kube-system -o wide
 	kubectl get pod -n kube-system -o wide
+
+## Node 端重启脚本
+	
+	#!/bin/bash
+	rm -rf /etc/kubernetes/*
+	rm -rf /var/lib/kubelet/*
+	service containerd restart
+	service kubelet restart
+
+
+	#kubeadm join 192.168.50.61:6443 .....
 
  - - -
 
