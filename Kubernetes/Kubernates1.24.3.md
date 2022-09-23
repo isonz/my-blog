@@ -289,9 +289,50 @@ https://blog.csdn.net/QW_sunny/article/details/123579157
 	
 ![k8s-docker](images/k8s-docker.jpg)
 
-# 私有仓部署
-	kubectl create deployment node-test-deployment --image=hub.gigimed.cn:30002/k8s/k8sapp:v1 --port=80 --replicas=1 --namespace=kube-system
+# 安装 Harbor
+	安装文件：https://github.com/goharbor/harbor/releases
+	参考文章：https://www.freesion.com/article/16241153409/
+        
+	1、把文件下载后解压
+	2、cp harbor.yml.tmpl harbor.yml
+	3、修改 harbor.yml
+		hostname: hub.gigimed.cn
+		http:
+		  port: 80
+		https:
+		  port: 443
+		  certificate: /etc/pki/harbor/server.crt
+		  private_key: /etc/pki/harbor/server.key
+	
+	4、创建 https 证书
+	 	openssl genrsa -des3 -out server.key 2048
+		openssl req -new -key server.key -out server.csr  // 在 server 那一步要记得填 hub.gigimed.cn
+		cp server.key server.key.org
+		openssl rsa -in server.key.org -out server.key
+		openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
+		
+		cp server.* /etc/pki/harbor/
+		
+		cp server.* /etc/pki/harbor/
+	5、运行如下命令安装
+		./prepare
+		./install.sh
+		
+	
+### 设置 /etc/docker/daemon.json
+	{
+		"exec-opts": ["native.cgroupdriver=systemd"],
+		"log-driver": "json-file",
+		"log-opts": {
+			"max-size": "100m"
+		},
+		"storage-driver": "overlay2",
+		"insecure-registries": ["https://hub.xxx.cn:30002"]
+	}
 
+# 创建私有仓库
+
+	kubectl create deployment node-test-deployment --image=hub.gigimed.cn:30002/k8s/k8sapp:v1 --port=80 --replicas=1 --namespace=kube-system
 
 # 登入私有仓库
 	kubectl create secret docker-registry login-harbor --docker-server=hub.gigimed.cn:30002 --docker-username=ison --docker-password=Ison1234 --namespace=kube-system --dry-run=client -o yaml > login-harbor.yaml
