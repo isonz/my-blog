@@ -305,16 +305,11 @@ https://blog.csdn.net/QW_sunny/article/details/123579157
 		  certificate: /etc/pki/harbor/server.crt
 		  private_key: /etc/pki/harbor/server.key
 	
-	4、创建 https 证书
-	 	openssl genrsa -des3 -out server.key 2048
-		openssl req -new -key server.key -out server.csr  // 在 server 那一步要记得填 hub.gigimed.cn
-		cp server.key server.key.org
-		openssl rsa -in server.key.org -out server.key
-		openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
+	4、创建 https 证书	
+		自动安装脚本参见：https://github.com/isonz/my-blog/blob/main/files/生产根证书和域名证书.sh
+		安装完后，需要把 all.gigimed.cn-fullchain.crt 改名成 all.gigimed.cn.cert 后，连同 all.gigimed.cn.key, ca.crt  一起复制到目录 /etc/docker/certs.d/hub.gigimed.cn 下
+		各个子节点需要把ca.crt做为根证书，Ubuntu使用方法见：https://github.com/isonz/my-blog/blob/main/ubuntu.md
 		
-		cp server.* /etc/pki/harbor/
-		
-		cp server.* /etc/pki/harbor/
 	5、运行如下命令安装
 		./prepare
 		./install.sh
