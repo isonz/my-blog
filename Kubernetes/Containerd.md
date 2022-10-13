@@ -156,3 +156,8 @@ ctr 默认使用的是 default 空间。
 
 同样 Kubernetes 下使用的 containerd 默认命名空间是 k8s.io，所以我们可以使用 ctr -n k8s.io 来查看 Kubernetes 下面创建的容器。
 
+#从 Harbor 私有镜像 pull
+
+	ctr --debug image pull -u username:password reg.mydomain.com/test/test:latest
+
+
