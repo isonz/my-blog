@@ -63,8 +63,8 @@ if [ -n "${all_domain}" ]; then
    }
 fi
 
-ca_subj="/C=US/ST=Florida/L=Miami/O=Little Havana/CN=DigiCert CA"
-server_subj="/C=US/ST=Florida/L=Miami/O=Little Havana/CN=${domain}"
+ca_subj="/C=CN/ST=GD/L=GZ/O=ONION/CN=Onion CA"
+server_subj="/C=CN/ST=GD/L=GZ/O=ONION/CN=${domain}"
 #其中C是Country，ST是state，L是local，O是Organization，OU是Organization Unit，CN是common name
 days=3650 #有效期10年
 echo "san:${san}"
