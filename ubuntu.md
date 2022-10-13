@@ -6,5 +6,5 @@
 	# 而/etc/ssl/certs/ca-certificates.crt 包含了系统自带的各种可信根证书.
  
 # 删除根证书：
-		rm -f /usr/local/share/ca-certificates/证书名称.crt
-		update-ca-certificates
+	rm -f /usr/local/share/ca-certificates/证书名称.crt
+	update-ca-certificates
