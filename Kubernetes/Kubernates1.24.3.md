@@ -292,6 +292,7 @@ https://blog.csdn.net/QW_sunny/article/details/123579157
 # 安装 Harbor
 	安装文件：https://github.com/goharbor/harbor/releases
 	参考文章：https://www.freesion.com/article/16241153409/
+	证书安装：https://goharbor.io/docs/2.5.0/install-config/configure-https/, http://i.lckiss.com/?p=7479
         
 	1、把文件下载后解压
 	2、cp harbor.yml.tmpl harbor.yml
@@ -317,7 +318,12 @@ https://blog.csdn.net/QW_sunny/article/details/123579157
 	5、运行如下命令安装
 		./prepare
 		./install.sh
-		
+	
+
+### 登入harbor
+	docker login https://hub.gigimed.cn
+
+	admin / Harbor12345
 	
 ### 设置 /etc/docker/daemon.json
 	{
