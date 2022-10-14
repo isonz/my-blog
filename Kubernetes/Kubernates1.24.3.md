@@ -20,13 +20,16 @@
 
 	kubectl expose --help
 
-	kubectl expose deployment node-test-deployment --port=8081 --target-port=8080 -n kube-system
+	kubectl expose deployment node-test-deployment --port=30000 --target-port=80
 
 	kubectl get svc -n kube-system
 	kubectl delete svc node-test-deployment -n kube-system
 
 	kubectl edit svc node-test-deployment -n kube-system
 	
+	#减少 replicas
+	kubectl edit deployments node-test-deployment
+	把 replicas调整即可
 	
 
 # 查看node节点加入的 sha 和 node 加入集群
