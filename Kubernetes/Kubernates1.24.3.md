@@ -347,10 +347,12 @@ https://blog.csdn.net/QW_sunny/article/details/123579157
 	crictl images list
 
 # 创建私有仓库
-
+### Docker
 	kubectl create deployment node-test-deployment --image=hub.gigimed.cn:30002/k8s/k8sapp:v1 --port=80 --replicas=1 --namespace=kube-system
+### Containerd (每个节点都需要修改/etc/containerd/config.toml成上面的配置)
+	kubectl create deployment  node-test-deployment --image=hub.gigimed.cn/gigi/wangyang_myapp:v1 --port=80 --replicas=3 --namespace=default
 
-# 登入私有仓库
+# 登入私有仓库（Docker）
 	kubectl create secret docker-registry login-harbor --docker-server=hub.gigimed.cn:30002 --docker-username=ison --docker-password=Ison1234 --namespace=kube-system --dry-run=client -o yaml > login-harbor.yaml
 	# kubectl apply -f login-harbor.yaml
 	kubectl create secret generic login-harbor --from-file=.dockerconfigjson=/root/.docker/config.json --type=kubernetes.io/dockerconfigjson --namespace=kube-system
