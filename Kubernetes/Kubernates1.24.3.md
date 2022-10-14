@@ -320,16 +320,31 @@ https://blog.csdn.net/QW_sunny/article/details/123579157
 
 	admin / Harbor12345
 	
-### 设置 /etc/docker/daemon.json
-	{
-		"exec-opts": ["native.cgroupdriver=systemd"],
-		"log-driver": "json-file",
-		"log-opts": {
-			"max-size": "100m"
-		},
-		"storage-driver": "overlay2",
-		"insecure-registries": ["https://hub.xxx.cn:30002"]
-	}
+### 设置 /etc/containerd/config.toml (可通过如下方式获得)
+	#containerd config default > /etc/containerd/config.toml
+	
+	[plugins."io.containerd.grpc.v1.cri".registry]
+      config_path = ""
+
+      [plugins."io.containerd.grpc.v1.cri".registry.auths]
+
+      [plugins."io.containerd.grpc.v1.cri".registry.configs]
+        [plugins."io.containerd.grpc.v1.cri".registry.configs."hub.gigimed.cn".tls]
+          insecure_skip_verify = true
+        [plugins."io.containerd.grpc.v1.cri".registry.configs."hub.gigimed.cn".auth]
+          username = "admin"
+          password = "Harbor12345"
+
+      [plugins."io.containerd.grpc.v1.cri".registry.headers]
+
+      [plugins."io.containerd.grpc.v1.cri".registry.mirrors]
+        [plugins."io.containerd.grpc.v1.cri".registry.mirrors."hub.gigimed.cn"]
+         endpoint = ["https://hub.gigimed.cn"]
+
+### 操作拉取和检验
+	systemctl restart containerd
+	crictl pull hub.gigimed.cn/gigi/wangyang_myapp:v1
+	crictl images list
 
 # 创建私有仓库
 
