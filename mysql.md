@@ -1,5 +1,11 @@
 # MySQL8开启远程访问权限
 
+	修改mysql的绑定地址，注释 127.0.0.1
+	vim  /etc/mysql/mysql.conf.d/mysqld.cnf
+		# bind-address          = 127.0.0.1
+		mysqlx-bind-address     = 127.0.0.1
+		
+
 	mysql -u root -p
 	use mysql;
 	update user set host = '%' where user = 'root';
