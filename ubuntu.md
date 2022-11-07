@@ -40,3 +40,19 @@ vim /etc/rc.local
  	ln -s /lib/systemd/system/rc-local.service /etc/systemd/system/rc-local.service
 重启生效。
 
+
+# 配置免密登录
+1、输入如下命令，连敲三个回车
+
+	ssh-keygen -t rsa
+
+2、输入如下命令，回车
+
+	ssh-copy-id -i ~/.ssh/id_rsa.pub 192.168.50.50 
+
+3、输入第二台服务器密码验证即可实现免密登录
+
+
+
+
+
