@@ -10,3 +10,33 @@
 	update-ca-certificates
 # 查看所有根证书
 	awk -v cmd='openssl x509 -noout -subject' ' /BEGIN/{close(cmd)};{print | cmd}' < /etc/ssl/certs/ca-certificates.crt
+
+
+
+# rc.local运行
+vim /lib/systemd/system/rc-local.service  最后添加如下代码
+
+	[Unit]
+	.....
+
+	[Service]
+	....
+
+	[Install]
+	WantedBy=multi-user.target
+	Alias=rc-local.service
+	
+vim /etc/rc.local
+
+ 	#!/bin/sh
+	
+	# 这里添加要开机执行的脚本和命令等等
+	
+	exit 0
+	
+最后：
+
+	chmod +x /etc/rc.local
+ 	ln -s /lib/systemd/system/rc-local.service /etc/systemd/system/rc-local.service
+重启生效。
+
