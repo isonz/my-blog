@@ -53,6 +53,9 @@ vim /etc/rc.local
 3、输入第二台服务器密码验证即可实现免密登录
 
 
+# Mount
 
+	#!/bin/bash
+	mount -t cifs  -o username=ison,password=zhang //192.168.16.143/ison/back /media/back
 
 
