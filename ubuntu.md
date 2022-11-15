@@ -58,4 +58,40 @@ vim /etc/rc.local
 	#!/bin/bash
 	mount -t cifs  -o username=ison,password=zhang //192.168.16.143/ison/back /media/back
 
+# 单网卡配置双IP
+
+vim /etc/iproute2/rt_tables  添加
+	
+	800 second_ip
+
+vim /etc/netplan/00-installer-config.yaml
+	
+	network:
+	  ethernets:
+	    enp2s0:
+	      dhcp4: no
+	      dhcp6: no
+	      addresses: [192.168.50.100/24, 192.168.16.100/24]
+	      # gateway4:  192.168.50.1
+	      routes:
+		- to: 0.0.0.0/0
+		  via: 192.168.50.1
+		- to: 0.0.0.0/0
+		  via: 192.168.16.1
+		  table: 800
+	      routing-policy:
+		- from: 192.168.16.100
+		  table: 800
+	      nameservers:
+		addresses: [180.76.76.76, 223.5.5.5]
+	  version: 2
+	  renderer: networkd
+	
+重启netplan
+
+	netplan apply
+
+
+
+
 
