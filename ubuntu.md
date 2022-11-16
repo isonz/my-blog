@@ -91,6 +91,34 @@ vim /etc/netplan/00-installer-config.yaml
 
 	netplan apply
 
+# 单网卡配置IP
+vim /etc/netplan/00-installer-config.yaml
+
+	network:
+	  ethernets:
+	    enp2s0:
+	      dhcp4: no
+	      dhcp6: no
+	      addresses: [192.168.50.100/24]
+	      routes:
+		- to: 0.0.0.0/0
+		  via: 192.168.50.1
+	      nameservers:
+		addresses: [180.76.76.76, 223.5.5.5]
+	  version: 2
+	  renderer: networkd
+
+重启netplan
+
+	netplan apply
+	
+
+
+
+
+
+
+
 
 
 
