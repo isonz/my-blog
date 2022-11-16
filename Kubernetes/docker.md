@@ -1,0 +1,22 @@
+# 开发环境服务器
+
+	  docker pull nacos/nacos-server:v2.1.0
+	  docker run -d --name nacos -p 8848:8848 -p 9848:9848 -e PREFER_HOST_MODE=hostname -e MODE=standalone --net host nacos/nacos-server:v2.1.0
+
+	  docker restart 8149bca96437
+
+	  docker pull mysql:5.7
+	  mkdir -p /data/mysql/data /data/mysql/logs /data/mysql/conf
+	  docker run -p 3306:3306 --name mysql -v /data/mysql/conf:/etc/mysql/conf.d -v /data/mysql/logs:/logs -v /data/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=Onionm123 -d mysql:5.7
+
+	  docker pull apache/rocketmq
+	  Port:9876
+
+	  docker pull redis:5.0
+	  Port:6379
+
+	  docker pull mongo:4.2
+	  Port:27017
+
+
+
