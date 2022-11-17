@@ -1,4 +1,14 @@
-# 开发环境服务器
+# 开发环境服务器 gigiapp
+
+	docker run --restart=always -dt --name gigiapp -p 7080:8080 -p 7070:7070 -p 7060:7060 --env LANG=C.UTF-8 gigiapp
+	
+其他参数
+
+	docker run --restart=always -dt --name gigi_app --net host gigi_app /etc/rc.local
+	docker update --restart=always 容器名字或ID
+
+
+# Nacos
 
 	  docker pull nacos/nacos-server:v2.1.0
 	  docker run -d --name nacos -p 8848:8848 -p 9848:9848 -e PREFER_HOST_MODE=hostname -e MODE=standalone --net host nacos/nacos-server:v2.1.0
