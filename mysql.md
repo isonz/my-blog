@@ -20,8 +20,13 @@
 	
 
 # 导出数据库
-导出所有数据库
+导出所有数据库，包括系统数据库
 
 	mysqldump --column-statistics=0 -h 192.168.16.100 -uroot -pxxxx --all-databases > all.sql
 	
+导出所有数据库，排除系统数据库
+
+	mysql -h 192.168.16.100 -uroot -pxxx -e "show databases;"| grep -Ev "Database|information_schema|mysql|performance_schema|test" | xargs mysqldump --column-statistics=0 -h 192.168.16.100 -uroot -pxxxx --databases > all.sql
+	
+
 
