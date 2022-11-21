@@ -18,3 +18,10 @@
 	# plugin需要是mysql_native_password
 	alter user 'root'@'%' identified with mysql_native_password by 'your_password';
 	
+
+# 导出数据库
+导出所有数据库
+
+	mysqldump --column-statistics=0 -h 192.168.16.100 -uroot -pxxxx --all-databases > all.sql
+	
+
