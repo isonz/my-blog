@@ -1,6 +1,6 @@
 # 开发环境服务器 gigiapp
 
-	docker run --restart=always -dt --name gigiapp -p 7080:8080 -p 7070:7070 -p 7060:7060 -v /media/gigi:/home/admin/apk --env LANG=C.UTF-8 gigiapp
+	docker run --restart=always -dt --name gigiapp -p 7080:8080 -p 7070:7070 -p 7060:7060 -v /media/gigi:/home/admin/apk --env LANG=C.UTF-8 gigiapp bash
 	
 其他参数
 
