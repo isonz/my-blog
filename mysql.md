@@ -53,7 +53,10 @@ crontab -e
 /data/mysql.restore.sh
 	
 	
-	
+
+全部恢复
+
+	mysql  database_name < file.sql
 
 单个数据库
 	
