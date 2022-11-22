@@ -28,5 +28,20 @@
 
 	mysql -h 192.168.16.100 -uroot -pxxx -e "show databases;"| grep -Ev "Database|information_schema|mysql|performance_schema|test" | xargs mysqldump --column-statistics=0 -h 192.168.16.100 -uroot -pxxxx --databases > all.sql
 	
+# 每天自动导出数据库并备份，删除10天前的备份
+/data/mysql.backup.sh
+
+	#!/bin/bash
+	
+	dir=/data/backup/mysql/
+	mysql -h 192.168.16.100 -uroot -p123456 -e "show databases;"| grep -Ev "Database|information_schema|mysql|performance_schema|test" | xargs mysqldump --column-statistics=0 -h 120.24.93.72 -uroot -pOnionm123 --databases > ${dir}/all.sql
+
+	tar zcvf data/all-$(date +%Y-%m-%d).tar.gz data/all.sql
+	find $dir -type f -name "*.gz" -mtime +30 -print | xargs rm -rf
+	
+crontab -e 
+
+	* 01 * * *      /data/backup/mysqlmysql.backup.sh
+	
 
 
