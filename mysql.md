@@ -52,6 +52,19 @@ crontab -e
 # 恢复数据
 /data/mysql.restore.sh
 	
+	#!/bin/bash
+
+	# usage: ./mysql.restore.sh 2022-11-22
+
+	if [ "$1" == "" ] ; then
+		echo "请输入时间"
+		exit
+	fi
+
+	dir=/data/backup/mysql/data
+	file=$1-all.sql.gz
+	gzip -d $dir/$file
+	mysql  -h 192.168.16.100 -uroot -p123456 < $dir/$1-all.sql
 	
 
 全部恢复
