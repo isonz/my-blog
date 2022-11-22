@@ -37,3 +37,17 @@ cd "m"
 doGit
 echo "------ M 处理完毕  ---------"
 
+
+
+
+
+# cron_gitlab.sh
+
+bak_dir=/data/backup/gitlab/gz;
+
+date_now=`date +%Y`-`date +%m`-`date +%d`;
+
+tar zcvf gz/gitlab_$date_now.tar.gz /data/backup/gitlab/v3/
+
+find $bak_dir -mtime +10 -name "*.*" -exec rm -rf {} \;
+
