@@ -1,6 +1,4 @@
-# push.sh
-  
-  #!/bin/bash
+#!/bin/bash
 
 # usage: ./pub.sh, ./pub.sh get,  ./pub.sh upgrade , ./pub.sh outdated
 
