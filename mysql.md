@@ -41,13 +41,15 @@
 	# tar zcvf data/all-$(date +%Y-%m-%d).tar.gz data/all.sql
 	# find $dir -type f -name "*.gz" -mtime +30 -print | xargs rm -rf
 	
-	# mysqldump -u root -p --databases database_name_a database_name_b > databases_a_b.sql
+单个单个数据库操作
+	
+	mysqldump -u root -p --databases database_name_a database_name_b > databases_a_b.sql
 	
 crontab -e 
 
 	* 01 * * *      /data/backup/mysqlmysql.backup.sh
 	
-恢复数据
+# 恢复数据
 /data/mysql.restore.sh
 	
 	
