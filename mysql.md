@@ -28,7 +28,7 @@
 
 	mysql -h 192.168.16.100 -uroot -pxxx -e "show databases;"| grep -Ev "Database|information_schema|mysql|performance_schema|test" | xargs mysqldump --column-statistics=0 -h 192.168.16.100 -uroot -pxxxx --databases > all.sql
 	
-# 每天自动导出数据库并备份，删除10天前的备份
+# 每天自动导出数据库并备份，删除10天前的备份，恢复备份的数据 
 /data/mysql.backup.sh
 
 	#!/bin/bash
@@ -41,9 +41,31 @@
 	# tar zcvf data/all-$(date +%Y-%m-%d).tar.gz data/all.sql
 	# find $dir -type f -name "*.gz" -mtime +30 -print | xargs rm -rf
 	
+	# mysqldump -u root -p --databases database_name_a database_name_b > databases_a_b.sql
+	
 crontab -e 
 
 	* 01 * * *      /data/backup/mysqlmysql.backup.sh
 	
+恢复数据
+/data/mysql.restore.sh
+	
+	
+	
+
+单个数据库
+	
+	# 从备份的全部数据库中恢复制定的数据库 
+	mysql --one-database database_name < all_databases.sql
+	
+	# 恢复单个数据库
+	mysql -u root -p -e "create database database_name";
+	mysql -u root -p database_name < database_name.sql
+
+
+从一个数据库直接备份到另一个数据库
+
+	mysqldump -u root -p database_name | mysql -h remote_host -u root -p remote_database_name
+
 
 
