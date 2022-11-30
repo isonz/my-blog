@@ -34,24 +34,38 @@
 
 
 # Nacos
+安装
 
-	  docker pull nacos/nacos-server:v2.1.0
-	  docker run -d --name nacos -p 8848:8848 -p 9848:9848 -e PREFER_HOST_MODE=hostname -e MODE=standalone --net host nacos/nacos-server:v2.1.0
+	  docker pull nacos/nacos-server:v2.1.2
+	  
+host 模式运行
 
-	  docker restart 8149bca96437
+	docker run --restart=always -d --name nacos -e PREFER_HOST_MODE=hostname -e MODE=standalone --net host nacos/nacos-server:v2.1.2
 
-	  docker pull mysql:5.7
-	  mkdir -p /data/mysql/data /data/mysql/logs /data/mysql/conf
-	  docker run -p 3306:3306 --name mysql -v /data/mysql/conf:/etc/mysql/conf.d -v /data/mysql/logs:/logs -v /data/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=Onionm123 -d mysql:5.7
+port 模式运行
 
+	docker run --restart=always -d --name nacos -p 8848:8848 -p 9848:9848 -e PREFER_HOST_MODE=hostname -e MODE=standalone nacos/nacos-server:v2.1.2
+
+
+# redis
+
+	docker pull redis:5.0
+	mkdir -p /data/redis/data
+	docker run --restart=always -d --name redis5 -p 6379:6379  -v /data/redis/redis.conf:/etc/redis/redis.conf -v /data/redis/data:/data  redis:5.0 /etc/redis/redis.conf 
+
+
+# mongoDB
+	 
+	docker pull mongo:4.2
+	mkdir -p /data/mongo/db
+	docker run --restart=always -d --name mongodb -p 27017:27017 -v /data/mongo/db:/data/db -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=admin888 --privileged=true mongo:4.2
+
+
+# rocketMQ
 	  docker pull apache/rocketmq
 	  Port:9876
 
-	  docker pull redis:5.0
-	  Port:6379
-
-	  docker pull mongo:4.2
-	  Port:27017
+	 
 
 
 
