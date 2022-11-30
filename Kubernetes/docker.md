@@ -7,6 +7,31 @@
 	docker run --restart=always -dt --name gigi_app --net host gigi_app /etc/rc.local
 	docker update --restart=always 容器名字或ID
 
+导入导出
+
+	docker export gigiapp > gigiapp.image.tar
+	docker import gigiapp.image.tar gigiapp
+
+
+# mysql
+
+安装
+	
+	docker pull mysql:8.0.31
+	mkdir -p /data/mysql/data /data/mysql/logs /data/mysql/conf
+	docker run --restart=always -p 3306:3306 --name mysql -v /data/mysql/conf:/etc/mysql/conf.d -v /data/mysql/logs:/logs -v /data/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123 -d mysql:8.0.31
+
+
+备份数据
+	
+	mysqldump --column-statistics=0 -h 120.24.93.72 -uroot -pOnionm123 --all-databases > all.sql
+
+	mysql -h 192.168.16.100 -uroot -p123 -e "show databases;"| grep -Ev "Database|information_schema|mysql|performance_schema|test" | xargs mysqldump --column-statistics=0 -h 192.168.16.100 -uroot -p123 --databases > all.sql
+
+恢复数据
+
+	mysql  -h 192.168.16.100 -uroot -p123 < all.sql
+
 
 # Nacos
 
