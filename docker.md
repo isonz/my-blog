@@ -15,6 +15,7 @@
 	docker import gigi-java.image.tar gigi-java
 
 	docker save ubuntu > /data/backup/docker/ubuntu.image.tar
+	docker load < /data/backup/docker/ubuntu.image.tar
 
 # mysql
 
