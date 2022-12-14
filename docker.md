@@ -9,8 +9,8 @@
 
 导入导出
 
-	docker export gigiapp > gigiapp.image.tar
-	docker import gigiapp.image.tar gigiapp
+	docker export gigi-java > gigi-java.image.tar
+	docker import gigi-java.image.tar gigi-java
 
 
 # mysql
