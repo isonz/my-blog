@@ -17,11 +17,18 @@
 	docker save ubuntu > /data/backup/docker/ubuntu.image.tar
 	docker load < /data/backup/docker/ubuntu.image.tar
 
-# 开发环境app打包
+# 开发环境 Android App打包
 
-	docker run --restart=always -dt --name gigi-app -v /www/apk:/app/apk --env LANG=C.UTF-8 gigi-app bash
+	docker run --restart=always -dt --name gigi-app-android -v /www/apk:/app/apk --env LANG=C.UTF-8 --env ENV TZ=Asia/Shanghai gigi-app-android bash
 	
-	docker exec -it gigi-app bash
+	docker exec -it gigi-app-android bash
+	
+# 开发环境 iOS App打包
+
+	docker run --restart=always -dt --name gigi-app-ios --env LANG=C.UTF-8 --env ENV TZ=Asia/Shanghai gigi-app-ios bash
+	
+	docker exec -it gigi-app-ios bash
+	
 
 # mysql
 
