@@ -19,13 +19,13 @@
 
 # 开发环境 Android App打包
 
-	docker run --restart=always -dt --name gigi-app-android -v /www/apk:/app/apk --env LANG=C.UTF-8 --env ENV TZ=Asia/Shanghai gigi-app-android bash
+	docker run --restart=always -dt --name gigi-app-android -v /www/apk:/app/apk --env LANG=C.UTF-8 --env TZ=Asia/Shanghai gigi-app-android bash
 	
 	docker exec -it gigi-app-android bash
 	
 # 开发环境 iOS App打包
 
-	docker run --restart=always -dt --name gigi-app-ios --env LANG=C.UTF-8 --env ENV TZ=Asia/Shanghai gigi-app-ios bash
+	docker run --restart=always -dt --name gigi-app-ios --env LANG=C.UTF-8 --env TZ=Asia/Shanghai gigi-app-ios bash
 	
 	docker exec -it gigi-app-ios bash
 	
