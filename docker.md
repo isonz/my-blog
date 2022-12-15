@@ -25,7 +25,7 @@
 	
 # 开发环境 iOS App打包
 
-	docker run --restart=always -dt --name gigi-app-ios --env LANG=C.UTF-8 --env TZ=Asia/Shanghai gigi-app-ios bash
+	docker run --restart=always -dt --name gigi-app-ios -v /www/ipa:/app/ipa --env LANG=C.UTF-8 --env TZ=Asia/Shanghai gigi-app-ios bash
 	
 	docker exec -it gigi-app-ios bash
 	
