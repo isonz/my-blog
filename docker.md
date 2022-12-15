@@ -1,6 +1,6 @@
 # 开发环境服务器 gigi-java
 
-	docker run --restart=always -dt --name gigi-java -p 7080:8080 -p 7070:7070 -p 7060:7060 -v /media/gigi:/home/admin/apk -v /home/onion/gigi-java/logs:/home/admin/app/logs -v /home/onion/gigi-java/logs/ons:/root/logs --env LANG=C.UTF-8 gigi-java bash
+	docker run --restart=always -dt --name gigi-java -p 7080:8080 -p 7070:7070 -p 7060:7060 -v /www/apk:/home/admin/apk -v /home/onion/gigi-java/logs:/home/admin/app/logs -v /home/onion/gigi-java/logs/ons:/root/logs --env LANG=C.UTF-8 gigi-java bash
 	
 	docker exec -it gigi-java bash
 	
@@ -19,7 +19,7 @@
 
 # 开发环境app打包
 
-	docker run --restart=always -dt --name gigi-app -v /media/gigi:/app/apk --env LANG=C.UTF-8 gigi-app bash
+	docker run --restart=always -dt --name gigi-app -v /www/apk:/app/apk --env LANG=C.UTF-8 gigi-app bash
 	
 	docker exec -it gigi-app bash
 
