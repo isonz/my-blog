@@ -83,6 +83,39 @@ port 模式运行
 	  Port:9876
 
 	 
+# Login登录凭证安全存储
+下载 用到的工具 docker-credential-helpers：https://github.com/docker/docker-credential-helpers/releases ，并命名为 docker-credential-pass
+	
+	chmod +x docker-credential-pass
+	mv docker-credential-pass /usr/local/bin/
+
+清空 /root/.docker/config.json文件内容，然后将下面配置写入config.json文件中
+
+	{ "credsStore": "pass"}
+
+检查gpg，并生成秘钥，过程中输入的账号和密码要用 harbor 的账号和密码，比如 admin 
+	
+	gpg --version
+	gpg --gen-key
+	gpg --list-keys
+	
+	export GPG_TTY=$(tty)
+	
+安装pass
+
+	apt install -y pass
+	pass version
+	apt-get install rng-tools
+
+	pass init admin		 [admin 是gen-key输入的账号，也是harbor的账号]
+	
+登入 harbor 验证
+
+	docker login hub.gigimed.cn:3443 -u admin
+
+
+
+
 
 
 
