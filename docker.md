@@ -113,6 +113,19 @@ port 模式运行
 
 	docker login hub.gigimed.cn:3443 -u admin
 
+最终 /root/.docker/config.json 的内容如下：
+
+	{
+        	"auths": {
+                	"https://hub.gigimed.cn:3443": {},
+                	"hub.gigimed.cn:3443": {}
+        	},
+        	"HttpHeaders": {
+                	"User-Agent": "Docker-Client/20.10.12"
+        	},
+        	"credsStore": "pass"
+	}
+
 
 
 
