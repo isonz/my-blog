@@ -63,6 +63,7 @@ port 模式运行
 
 	docker run --restart=always -d --name nacos -p 8848:8848 -p 9848:9848 -e PREFER_HOST_MODE=hostname -e MODE=standalone nacos/nacos-server:v2.1.2
 
+	docker run --restart=always -dt --name nacos -p 8848:8848 -p 9848:9848 -e PREFER_HOST_MODE=hostname -e MODE=standalone gigi-nacos:v1 bash
 
 # redis
 
