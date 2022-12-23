@@ -25,12 +25,6 @@
 	
 	docker exec -it gigi-app-android bash
 	
-# 开发环境 iOS App打包
-
-	docker run --restart=always -dt --name gigi-app-ios -v /www/ipa:/app/ipa --env LANG=C.UTF-8 --env TZ=Asia/Shanghai gigi-app-ios bash
-	
-	docker exec -it gigi-app-ios bash
-	
 
 # mysql
 
@@ -71,6 +65,9 @@ port 模式运行
 
 	docker pull redis:5.0
 	mkdir -p /data/redis/data
+	
+	docker run --restart=always -d --name redis5 --net host  -v /data/redis/redis.conf:/etc/redis/redis.conf -v /data/redis/data:/data  redis:5.0 /etc/redis/redis.conf 
+	
 	docker run --restart=always -d --name redis5 -p 6379:6379  -v /data/redis/redis.conf:/etc/redis/redis.conf -v /data/redis/data:/data  redis:5.0 /etc/redis/redis.conf 
 
 
@@ -78,6 +75,9 @@ port 模式运行
 	 
 	docker pull mongo:4.2
 	mkdir -p /data/mongo/db
+	
+	docker run --restart=always -d --name mongodb --net host -v /data/mongo/db:/data/db -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=admin888 --privileged=true mongo:4.2
+	
 	docker run --restart=always -d --name mongodb -p 27017:27017 -v /data/mongo/db:/data/db -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=admin888 --privileged=true mongo:4.2
 
 
@@ -86,7 +86,7 @@ port 模式运行
 	  Port:9876
 
 	 
-# Login登录凭证安全存储
+# Docker Login登录凭证安全存储
 下载 用到的工具 docker-credential-helpers：https://github.com/docker/docker-credential-helpers/releases ，并命名为 docker-credential-pass
 	
 	chmod +x docker-credential-pass
