@@ -20,7 +20,16 @@ Admin
 	/home/admin/admin.gigimed.cn/package.tgz
 	tar zxvf /home/admin/admin.gigimed.cn/package.tgz -C /home/admin/admin.gigimed.cn/
 
-		
+
+Gateway & Auth
+
+	/home/admin/app/package.tgz
+	tar zxvf /home/admin/app/package.tgz -C /home/admin/app/
+	bash /home/admin/app/deploy.sh restart gigi-gateway
+	# sh /home/admin/app/deploy.sh restart gigi-auth
+
+
+
 		
 删除阿里云自主部署主机服务 staragent
 		
