@@ -1,3 +1,21 @@
+# 组合命令
+
+	 docker network create --driver bridge --subnet=192.168.123.0/16 --gateway=192.168.123.1 mynet
+	 
+	 docker run --restart=always -d --net mynet --ip 192.168.123.2 --name mysql -p 3306:3306 -v /data/mysql/conf:/etc/mysql/conf.d -v /data/mysql/logs:/logs -v /data/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=Onionm123 mysql:latest
+	 
+	 docker run --restart=always -d --net mynet --ip 192.168.123.3 --name nacos -p 8848:8848 -p 9848:9848 -e PREFER_HOST_MODE=hostname -e MODE=standalone nacos
+	 
+	 docker run --restart=always -d --net mynet --ip 192.168.123.4 --name redis5 -p 6379:6379  -v /data/redis/redis.conf:/etc/redis/redis.conf -v /data/redis/data:/data  redis5 /etc/redis/redis.conf
+	 
+	 docker run --restart=always -d --net mynet --ip 192.168.123.5 --name mongodb -p 27017:27017 -v /data/mongo/db:/data/db -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=admin888 --privileged=true mongodb
+	 
+	 docker run --restart=always -dt --net mynet --ip 192.168.123.101 --name gigi-java-1 -p 7080:7080 -p 7070:7070 -p 7060:7060 -v /www/apk:/home/admin/apk -v /home/onion/gigi-java/logs:/home/admin/app/logs -v /home/onion/gigi-java/logs/ons:/root/logs --env LANG=C.UTF-8 gigi-java bash
+	 
+	  docker run --restart=always -dt --net mynet --ip 192.168.123.102 --name gigi-java-2 -p 7081:7080 -p 7071:7070 -p 7061:7060 -v /www/apk:/home/admin/apk -v /home/onion/gigi-java/logs:/home/admin/app/logs -v /home/onion/gigi-java/logs/ons:/root/logs --env LANG=C.UTF-8 gigi-java bash
+	  
+	docker exec -it gigi-java-1 bash
+
 # 开发环境服务器 gigi-java
 
 	docker run --restart=always -dt --name gigi-java --net host -v /www/apk:/home/admin/apk -v /home/onion/gigi-java/logs:/home/admin/app/logs -v /home/onion/gigi-java/logs/ons:/root/logs --env LANG=C.UTF-8 gigi-java bash
@@ -35,6 +53,8 @@
 	docker pull mysql:8.0.31
 	mkdir -p /data/mysql/data /data/mysql/logs /data/mysql/conf
 	docker run --restart=always --net host --name mysql -v /data/mysql/conf:/etc/mysql/conf.d -v /data/mysql/logs:/logs -v /data/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=Onionm123 -d mysql:latest
+	
+	docker run --restart=always -p 3306:3306 --name mysql -v /data/mysql/conf:/etc/mysql/conf.d -v /data/mysql/logs:/logs -v /data/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=Onionm123 -d mysql:latest
 
 
 备份数据
