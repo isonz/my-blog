@@ -2,9 +2,9 @@
 
 	docker run --restart=always -dt --name gigi-java --net host -v /www/apk:/home/admin/apk -v /home/onion/gigi-java/logs:/home/admin/app/logs -v /home/onion/gigi-java/logs/ons:/root/logs --env LANG=C.UTF-8 gigi-java bash
 	
-	docker run --restart=always -dt --name gigi-java-1 -p 7080:7080 -p 7070:7070 -p 7060:7060 --net container:mongodb:redis5:nacos:mysql -v /www/apk:/home/admin/apk -v /home/onion/gigi-java/logs:/home/admin/app/logs -v /home/onion/gigi-java/logs/ons:/root/logs --env LANG=C.UTF-8 gigi-java bash
+	docker run --restart=always -dt --name gigi-java-1 --net container:mysql -v /www/apk:/home/admin/apk -v /home/onion/gigi-java/logs:/home/admin/app/logs -v /home/onion/gigi-java/logs/ons:/root/logs --env LANG=C.UTF-8 gigi-java bash
 	
-	docker run --restart=always -dt --name gigi-java-2 -p 7081:7080 -p 7071:7070 -p 7061:7060 --net container:mongodb:redis5:nacos:mysql -v /www/apk:/home/admin/apk -v /home/onion/gigi-java/logs:/home/admin/app/logs -v /home/onion/gigi-java/logs/ons:/root/logs --env LANG=C.UTF-8 gigi-java bash
+	docker run --restart=always -dt --name gigi-java-2 -p 7081:7080 -p 7071:7070 -p 7061:7060 -v /www/apk:/home/admin/apk -v /home/onion/gigi-java/logs:/home/admin/app/logs -v /home/onion/gigi-java/logs/ons:/root/logs --env LANG=C.UTF-8 gigi-java bash
 	
 	docker exec -it gigi-java bash
 	
