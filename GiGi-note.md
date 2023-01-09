@@ -38,3 +38,24 @@ Gateway & Auth
 	rm /usr/sbin/staragent_sn
 
 		
+# 青才服务器
+
+	mkdir -p /data/dova-redis/data
+	docker run --restart=always -d --net dovanet --ip 172.12.12.4 --cpus=2 -m=4096m --name dova-redis5 -p 6378:6379  -v /data/dova-redis/redis.conf:/etc/redis/redis.conf -v /data/dova-redis/data:/data  redis5 /etc/redis/redis.conf
+
+	docker run --restart=always -dt --net dovanet --ip 172.12.12.101 --cpus=4 -m=16384m --name dova-algor -p 6023:6023 -p 6024:6024 -p 6025:6025 -p 6022:22 -v /home/onion/dova-algor:/home/dova-algor --env LANG=C.UTF-8 dova-algor bash
+
+
+	Redis
+	version :  5.0
+	公网IP：183.6.57.47   端口： 6378
+	内网IP:   172.12.12.4   端口： 6379
+	登入账号：无				登入密码: mima
+
+	Ubuntu 
+	version:  22.04
+	公网IP：183.6.57.47   	SSH端口： 6022 ,  预留端口 6023-6025
+	内网IP:   172.12.12.101   SSH端口： 22
+	账号：root						密码：	Onionm123
+
+
