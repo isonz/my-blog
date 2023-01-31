@@ -6,7 +6,12 @@
 	docker network create elastic
 	
 ### 3、运行容器
-	docker run --restart=always -d --hostname es01.gigimed.cn --name es01 --net elastic -p 9200:9200 -v /www/elasticsearch/data:/usr/share/elasticsearch/data docker.elastic.co/elasticsearch/elasticsearch:8.6.1
+	docker run --restart=always -d \
+	--hostname es01.gigimed.cn --name es01 --net elastic \
+	-p 9200:9200 \
+	-v /www/elasticsearch/data:/usr/share/elasticsearch/data \
+	-v /www/elasticsearch/logs:/usr/share/elasticsearch/logs \
+	docker.elastic.co/elasticsearch/elasticsearch:8.6.1
 
 或关闭安全认证：
 	
@@ -15,7 +20,11 @@
 	-e "discovery.type=single-node" \
 	-e "xpack.security.enabled=false"   \
 	-v /www/elasticsearch/data:/usr/share/elasticsearch/data \
+	-v /www/elasticsearch/logs:/usr/share/elasticsearch/logs \
 	docker.elastic.co/elasticsearch/elasticsearch:8.6.1
+	
+*  需要注意的是,命令中所有 valume 目录都必须是 777权限，否则无法写入。  
+*  验证过 /usr/share/elasticsearch/config 目录无法外挂到容器外，里面依赖的文件太多。
 
 ### 4、导出证书
 	docker cp es01:/usr/share/elasticsearch/config/certs/http_ca.crt .
