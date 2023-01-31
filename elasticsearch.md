@@ -6,10 +6,11 @@
 	docker network create elastic
 	
 ### 3、运行容器
-	docker run --name es01 --net elastic -p 9200:9200 -it docker.elastic.co/elasticsearch/elasticsearch:8.6.1
+	docker run --restart=always -d --hostname es01.gigimed.cn --name es01 --net elastic -p 9200:9200 docker.elastic.co/elasticsearch/elasticsearch:8.6.1
 
-	或关闭安全认证：
-	docker run --restart=always -d  --name es01 --net elastic \
+或关闭安全认证：
+	
+	docker run --restart=always -d --hostname es01.gigimed.cn --name es01 --net elastic \
 	-p 9200:9200 -p 9300:9300   \
 	-e "discovery.type=single-node" \
 	-e "xpack.security.enabled=false"   \
