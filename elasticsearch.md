@@ -6,7 +6,7 @@
 	docker network create elastic
 	
 ### 3、运行容器
-	docker run --restart=always -d --hostname es01.gigimed.cn --name es01 --net elastic -p 9200:9200 docker.elastic.co/elasticsearch/elasticsearch:8.6.1
+	docker run --restart=always -d --hostname es01.gigimed.cn --name es01 --net elastic -p 9200:9200 -v /www/elasticsearch/data:/usr/share/elasticsearch/data  docker.elastic.co/elasticsearch/elasticsearch:8.6.1
 
 或关闭安全认证：
 	
