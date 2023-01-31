@@ -10,7 +10,6 @@
 	--hostname es01.gigimed.cn --name es01 --net elastic \
 	-p 9200:9200 \
 	-v /www/elasticsearch/data:/usr/share/elasticsearch/data \
-	-v /www/elasticsearch/logs:/usr/share/elasticsearch/logs \
 	docker.elastic.co/elasticsearch/elasticsearch:8.6.1
 
 或关闭安全认证：
@@ -20,7 +19,6 @@
 	-e "discovery.type=single-node" \
 	-e "xpack.security.enabled=false"   \
 	-v /www/elasticsearch/data:/usr/share/elasticsearch/data \
-	-v /www/elasticsearch/logs:/usr/share/elasticsearch/logs \
 	docker.elastic.co/elasticsearch/elasticsearch:8.6.1
 	
 *  需要注意的是,命令中所有 valume 目录都必须是 777权限，否则无法写入。  
