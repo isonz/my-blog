@@ -47,6 +47,14 @@
 ### 1、安装 kibana docker 
 	docker run --restart=always -d --name kibana --net elastic -p 5601:5601 docker.elastic.co/kibana/kibana:8.6.1
 	
+或者指定本地的配置文件
+
+	docker run --restart=always -d --name kibana --net elastic \
+	-p 5601:5601 \
+	-v /www/elasticsearch/kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml \
+	docker.elastic.co/kibana/kibana:8.6.1
+
+
 ### 2、创建账户 kibana_system 的密码
 	docker exec -it es01 /usr/share/elasticsearch/bin/elasticsearch-reset-password -u kibana_system
 
