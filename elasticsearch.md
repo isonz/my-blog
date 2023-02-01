@@ -72,7 +72,7 @@
 	docker pull containerize/elastichd
 	
 ### 2、连接 ElasticSearch
-	docker run -p 9800:9800 -d --net elastic --link es01 containerize/elastichd
+	docker run --restart=always -d --name elastichd -p 9800:9800 -d --net elastic --link es01 containerize/elastichd
 
 
 
