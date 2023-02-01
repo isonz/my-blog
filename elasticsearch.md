@@ -67,6 +67,13 @@
 	docker exec -it kibana /usr/share/kibana/bin/kibana-verification-code
 
 
+# 安装 ElisticHD
+### 1、安装 docker 版
+	docker pull containerize/elastichd
+	
+### 2、连接 ElasticSearch
+	docker run -p 9800:9800 -d --net elastic --link es01 containerize/elastichd
+
 
 
 
