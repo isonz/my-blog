@@ -41,6 +41,30 @@
 ### 8、本地docker 添加节点
 	docker run -d -e ENROLLMENT_TOKEN="<token>" --name es02 --net elastic -it docker.elastic.co/elasticsearch/elasticsearch:8.6.1
 
+### 9、验证请求
+建立索引 gigi
+	
+	curl -X PUT --cacert http_ca.crt https://elastic:_Y_mCIm2SvZ=0scaMXkS@es01.gigimed.cn:9200/gigi
+	
+添加内容
+	
+	curl --cacert http_ca.crt https://elastic:_Y_mCIm2SvZ=0scaMXkS@es01.gigimed.cn:9200/gigi/_doc/0 \
+	-X POST \
+	-H "Content-Type:application/json" \
+	-d '{"name":"《围城》","price":101}'
+
+获取索引信息
+
+	curl -X GET --cacert http_ca.crt https://elastic:_Y_mCIm2SvZ=0scaMXkS@es01.gigimed.cn:9200/gigi
+
+删除索引
+
+	curl -X DELETE --cacert http_ca.crt https://elastic:_Y_mCIm2SvZ=0scaMXkS@es01.gigimed.cn:9200/gigi
+	
+查看所有索引信息
+	
+	curl -X GET --cacert http_ca.crt https://elastic:_Y_mCIm2SvZ=0scaMXkS@es01.gigimed.cn:9200/_cat/indices
+
 
 	
 # 安装 Kibana
