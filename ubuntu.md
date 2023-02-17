@@ -1,3 +1,9 @@
+# crontab 获取脚本所在的绝对路径
+
+	SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+	cd $SCRIPT_DIR
+	pwd
+
 # 添加根证书
 	cp 证书名称.crt /usr/local/share/ca-certificates
 	update-ca-certificates
