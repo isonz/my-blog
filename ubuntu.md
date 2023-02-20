@@ -145,6 +145,15 @@ vim /etc/netplan/00-installer-config.yaml
 
 	/swap/swapfile 	swap 	swap 	defaults 	0 	0
 	
+6、配置了swap但没有起作用的处理办法   
+	
+	/etc/sysctl.conf， 修改sysctl.conf中，修改swappiness参数=60
+	或   
+	/proc/sys/vm/swappiness 填入 60
+	
+执行sysctl –p生效后，就能够解决问题	
+	
+
 	
 	
 
