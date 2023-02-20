@@ -119,6 +119,34 @@ vim /etc/netplan/00-installer-config.yaml
 	netplan apply
 	
 
+# 配置 SWAP 虚拟内存
+1、查看当前交换内存
+
+	free -m
+	
+2、在根目录下创建swap目录，进入swap目录，并创建交换分区（12G）
+
+	mkdir /swap
+	cd /swap
+	dd if=/dev/zero of=swapfile bs=1024 count=12582912
+
+3、制作交换文件，挂载交换分区
+	
+	mkswap swapfile
+	swapon swapfile
+
+4、如果挂载时提示这个信息，则需要需改交换文件的权限
+
+	chmod 600 swapfile
+	swapoff swapfile
+	swapon swapfile
+
+5、自动启动 swap 分区，在 /etc/fstab 文件中添加 /swap/swapfile swap swap defaults 0 0
+
+	/swap/swapfile 	swap 	swap 	defaults 	0 	0
+	
+	
+	
 
 
 
