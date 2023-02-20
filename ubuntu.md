@@ -144,7 +144,7 @@ vim /etc/netplan/00-installer-config.yaml
 
 5、自动启动 swap 分区，在 /etc/fstab 文件中添加 /swap/swapfile swap swap defaults 0 0
 
-	/swap/swapfile 	swap 	swap 	defaults 	0 	0
+	/swap/swapfile swap swap defaults 0 0
 	
 6、配置了swap但没有起作用的处理办法   
 	
