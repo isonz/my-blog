@@ -132,6 +132,7 @@ vim /etc/netplan/00-installer-config.yaml
 
 3、制作交换文件，挂载交换分区
 	
+	chmod 600 swapfile
 	mkswap swapfile
 	swapon swapfile
 
