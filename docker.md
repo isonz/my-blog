@@ -54,7 +54,7 @@
 	mkdir -p /data/mysql/data /data/mysql/logs /data/mysql/conf
 	docker run --restart=always --net host --name mysql -v /data/mysql/conf:/etc/mysql/conf.d -v /data/mysql/logs:/logs -v /data/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=Onionm123 -d mysql:latest
 	
-	docker run --restart=always -p 3306:3306 --name mysql -v /data/mysql/conf:/etc/mysql/conf.d -v /data/mysql/logs:/logs -v /data/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=Onionm123 -d mysql:latest
+	docker run --restart=always -p 3306:3306 --name mysql -v /data/mysql/conf/my.cnf:/etc/my.cnf -v /data/mysql/conf:/etc/mysql/conf.d -v /data/mysql/logs:/logs -v /data/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=Onionm123 -d mysql:latest
 
 
 备份数据
