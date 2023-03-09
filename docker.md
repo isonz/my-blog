@@ -107,6 +107,12 @@ port 模式运行
 	  docker pull apache/rocketmq
 	  Port:9876
 
+# Postgres
+
+	docker run --restart=always -d --name postgres -p 5432:5432 -v /data/postgres/data:/var/lib/postgresql/data -e POSTGRES_PASSWORD=Onionm123 postgres:latest
+	
+	docker run --restart=always -d --net mynet --ip 192.168.123.20 --name postgres -p 5432:5432 -v /data/postgres/data:/var/lib/postgresql/data -e POSTGRES_PASSWORD=Onionm123 postgres:latest
+
 	 
 # Docker Login登录凭证安全存储
 下载 用到的工具 docker-credential-helpers：https://github.com/docker/docker-credential-helpers/releases ，并命名为 docker-credential-pass
