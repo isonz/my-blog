@@ -88,6 +88,7 @@
 			fi
 		done;
 		sleep 1;
+		echo -e "\n -------- end loop ------------ ";
 	done;
 
 	echo "Finished"
