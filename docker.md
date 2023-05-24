@@ -1,12 +1,12 @@
 # codeFormer
 
-	docker run --restart=always -dt \
+	docker run --restart=always -dit \
 	--name codeformer -p 1235:1234 \
 	-v /Users/apponion/PC/Docker/codeformer/inputs:/CodeFormer/inputs \
 	-v /Users/apponion/PC/Docker/codeformer/results:/CodeFormer/results \
 	-v /Users/apponion/PC/Docker/codeformer/logs:/CodeFormer/logs \
 	--gpus all \
-	--privileged=true codeformer:v1
+	--privileged=true codeformer:v1 bash /root/start.sh
 
 # 组合命令
 
