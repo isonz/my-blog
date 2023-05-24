@@ -6,7 +6,7 @@
 	-v /Users/apponion/PC/Docker/codeformer/results:/CodeFormer/results \
 	-v /Users/apponion/PC/Docker/codeformer/logs:/CodeFormer/logs \
 	--gpus all \
-	--privileged=true codeformer:v1 /bin/bash /root/start.sh
+	--privileged=true codeformer:v1 bash
 
 # 组合命令
 
