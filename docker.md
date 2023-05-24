@@ -6,7 +6,7 @@
 	-v /Users/apponion/PC/Docker/codeformer/results:/CodeFormer/results \
 	-v /Users/apponion/PC/Docker/codeformer/logs:/CodeFormer/logs \
 	--gpus all \
-	-m 4G --cpuset-cpus="0-1" \
+	-m 4G --memory-reservation=8G --cpus=4 \
 	--privileged=true codeformer:v1 bash
 
 # 组合命令
