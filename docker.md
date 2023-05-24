@@ -1,3 +1,13 @@
+# codeFormer
+
+	docker run --restart=always -dt \
+	--name codeformer -p 1235:1234 \
+	-v /Users/apponion/PC/Docker/codeformer/inputs:/CodeFormer/inputs \
+	-v /Users/apponion/PC/Docker/codeformer/results:/CodeFormer/results \
+	-v /Users/apponion/PC/Docker/codeformer/logs:/CodeFormer/logs \
+	--gpus all \
+	--privileged=true codeformer:v1
+
 # 组合命令
 
 	 docker network create --driver bridge --subnet=192.168.123.0/16 --gateway=192.168.123.1 mynet
