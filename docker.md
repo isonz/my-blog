@@ -1,3 +1,35 @@
+# podman
+### 创建系统服务
+	podman generate systemd --name icalc-server > /etc/systemd/system/icalc-server.service
+	systemctl daemon-reload
+	systemctl enable icalc-server.service
+	systemctl start icalc-server.service
+
+### 创建容器
+	podman run -d --net mynet --ip 172.10.0.101 --name icalc-server -p 8001:8001 \
+ 	--label io.containers.autoupdate=registry \
+  	--label PODMAN_SYSTEMD_UNIT=icalc-server.service \
+   	registry.ap-southeast-1.aliyuncs.com/ison/icalc-python-server:latest
+
+### 执行更新
+ 	podman auto-update
+	podman auto-update --dry-run
+
+### 按计划应用更新
+	crontab -e
+	00 * * * *  podman auto-update  #每分钟运行
+
+### 删除系统服务
+	systemctl stop icalc-server.service
+	systemctl disable icalc-server.service
+	rm /etc/systemd/system/icalc-server.service
+	systemctl daemon-reload
+### 删除容器和镜像
+	podman stop icalc-server
+	podman rm icalc-server
+	podman rmi icalc-server
+ 
+
 # codeFormer
 
 	docker run --restart=always -dit \
