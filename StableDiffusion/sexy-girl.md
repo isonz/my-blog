@@ -1,6 +1,6 @@
 # 正向词
 masterpiece, best quality, super fine,((extreme details)), perfect, first-class,best animated,ray tracing, global illumination,
-delicate face, (pretty girl),((delicate facial features)), attention to facial details,
+delicate face, (pretty girl),((delicate facial features)),
 delicate hairstyle, 
 perfect figure, Slim figure,
 big breasts, huge breasts, chest tightness, between breasts, v,
@@ -15,6 +15,7 @@ beautiful detailed eyes, aqua eyes, blush,
 
 
 ---
+attention to facial details,
 full body shot, upper body,
 cowboy shot,  
 close-up shot 
@@ -36,4 +37,5 @@ wrong joint angle, disappearing legs, disappearing arms, disappearing limbs, ((f
 multiple fingers,extra fingers, fewer fingers, bad feet, (bad-hands-5:1.4), EasyNegativeV2, FastNegativeV2
 
 
-
+---
+https://zhuanlan.zhihu.com/p/650942188
