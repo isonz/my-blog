@@ -9,14 +9,14 @@ beautiful detailed eyes, aqua eyes, blush,
 
 1 girl, solo, gorgeously dressed, transparent, looking at viewer, cute face, + 其他
 
- bright and colorful tones, 3D, high resolution,
+ bright and colorful tones, 3D, high resolution, unity 8k, UHD, wallpaper,(ultra detailed:1.3),
 
 ((((ultra illustrated style:1.0)))),
 
 
 ---
 attention to facial details,
-full body shot, upper body,
+(full body:1.2), upper body, standing,
 cowboy shot,  
 close-up shot 
 
