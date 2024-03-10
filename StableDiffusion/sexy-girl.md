@@ -1,24 +1,24 @@
 # 正向词
-masterpiece, best quality, super fine,((extreme details)), perfect, first-class,best animated,ray tracing, global illumination,
-delicate face, (pretty girl),((delicate facial features)),
-delicate hairstyle, 
-perfect figure, Slim figure,
-big breasts, huge breasts, chest tightness, between breasts, v,
-backlight, perfect, first-class,
-beautiful detailed eyes, aqua eyes, blush,
+masterpiece, best quality, super fine,((extreme details)), perfect, first-class,best animated,ray tracing, global illumination,  
+delicate face, (pretty girl),((delicate facial features)),  
+delicate hairstyle,   
+perfect figure, Slim figure,  
+big breasts, huge breasts, chest tightness, between breasts, v,  
+backlight, perfect, first-class,  
+beautiful detailed eyes, aqua eyes, blush,  
 
-1 girl, solo, gorgeously dressed, transparent, looking at viewer, cute face, + 其他
+1 girl, solo, gorgeously dressed, transparent, looking at viewer, cute face, + 其他  
 
- bright and colorful tones, 3D, high resolution, unity 8k, UHD, wallpaper,(ultra detailed:1.3),
+ bright and colorful tones, 3D, high resolution, unity 8k, UHD, wallpaper,(ultra detailed:1.3),  
 
-((((ultra illustrated style:1.0)))),
+((((ultra illustrated style:1.0)))),  
 
 
 ---
-attention to facial details,
-(full body:1.2), upper body, standing,
-cowboy shot,  
-close-up shot 
+attention to facial details,  
+(full body:1.2), upper body, standing,  
+cowboy shot,    
+close-up shot   
 
 
 # 反向词
