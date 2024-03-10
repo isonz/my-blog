@@ -3,7 +3,7 @@ masterpiece, best quality, super fine,((extreme details)), perfect, first-class,
 delicate face, (pretty girl),((delicate facial features)),  
 delicate hairstyle,   
 perfect figure, Slim figure,  
-big breasts, huge breasts, chest tightness, between breasts, v,  
+big breasts, between breasts, v,  
 backlight, perfect, first-class,  
 beautiful detailed eyes, aqua eyes, blush,  
 
