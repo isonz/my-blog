@@ -62,10 +62,10 @@ acnes, skin blemishes, age spot, glans, Blur image quality, (poorly drawn hands)
 Steps: 30, Sampler: DPM++ 2M Karras, CFG scale: 7, Seed: 3934843339, Size: 768x1280, Model hash: 1fd4d16f70, Model: 小凤写实清新摄影风格大模型三号_1.0, Version: 1.7.0
 
 <p>
- <a href="https://raw.githubusercontent.com/isonz/my-blog/main/StableDiffusion/images/00446-1627801711.png" target="_blank"><img src="https://raw.githubusercontent.com/isonz/my-blog/main/StableDiffusion/images/00446-1627801711.png" width="24%" /></a>
- <a href="https://raw.githubusercontent.com/isonz/my-blog/main/StableDiffusion/images/00464-2361592117.png" target="_blank"><img src="https://raw.githubusercontent.com/isonz/my-blog/main/StableDiffusion/images/00464-2361592117.png" width="24%" /></a>
-  <a href="https://raw.githubusercontent.com/isonz/my-blog/main/StableDiffusion/images/00465-2361592118.png" target="_blank"><img src="https://raw.githubusercontent.com/isonz/my-blog/main/StableDiffusion/images/00465-2361592118.png" width="24%" /></a>
-  <a href="https://raw.githubusercontent.com/isonz/my-blog/main/StableDiffusion/images/00467-2361592120.png" target="_blank"><img src="https://raw.githubusercontent.com/isonz/my-blog/main/StableDiffusion/images/00467-2361592120.png" width="24%" /></a>
+<img src="https://raw.githubusercontent.com/isonz/my-blog/main/StableDiffusion/images/00446-1627801711.png" width="24%" />
+<img src="https://raw.githubusercontent.com/isonz/my-blog/main/StableDiffusion/images/00464-2361592117.png" width="24%" />
+<img src="https://raw.githubusercontent.com/isonz/my-blog/main/StableDiffusion/images/00465-2361592118.png" width="24%" />
+<img src="https://raw.githubusercontent.com/isonz/my-blog/main/StableDiffusion/images/00467-2361592120.png" width="24%" />
 </p>
 
 # 
