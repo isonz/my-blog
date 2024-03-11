@@ -19,7 +19,9 @@ attention to facial details,
 (full body:1.2), upper body, standing,  
 cowboy shot,    
 close-up shot   
+huge breasts, chest tightness,  
 
+----
 
 # 反向词
 (worst quality:2), (low quality:2), (normal quality:2), easynegative, many scene, many cut, 3D, nsfw, many fingers, (easynegative:0.7), (monochrome:1.1), (greyscale), ugly, tiling, poorly drawn feet, 
