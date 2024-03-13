@@ -24,7 +24,7 @@ huge breasts, chest tightness,
 ----
 
 # 反向词
-(worst quality:2), (low quality:2), (normal quality:2), easynegative, many scene, many cut, 3D, nsfw, many fingers, (easynegative:0.7), (monochrome:1.1), (greyscale), ugly, tiling, poorly drawn feet, 
+(worst quality:2), (low quality:2), (normal quality:2), easynegative, many scene, many cut, nsfw, many fingers, (easynegative:0.7), (monochrome:1.1), (greyscale), ugly, tiling, poorly drawn feet, 
 poorly drawn hands, poorly drawn face, extra limbs, disfigured, deformed, bad anatomy, watermark, signature, cut off, low contrast, underexposed, overexposed, bad art, beginner,  
 amateur, distorted face, blurry, Colorful tattoos on the arms, draft, grainy, elf ears, horns, condom, fat, error, (multiple panel) ((worst quality, low quality),  
 bad_pictures, negative_hand-neg:1.2), ng_deepnegative_v1_75t, badhandv4, (worst quality:2), (low quality:2), (normal quality:2), lowres,watermark, (nsfw:1.5), 
