@@ -35,9 +35,10 @@
 	
 	dir=/data/backup/mysql/
  	host=192.168.16.100
+  	user=root
 	pwd=123456
 
- 	mysql -h ${host} -uroot -p${pwd} -e "show databases;"| grep -Ev "Database|information_schema|mysql|performance_schema|test" | xargs mysqldump --column-statistics=0 -h ${host} -uroot -p${pwd} --databases | gzip > ${dir}/$(date +%Y-%m-%d)-all.sql.gz
+ 	mysql -h ${host} -u${user} -p${pwd} -e "show databases;"| grep -Ev "Database|information_schema|mysql|performance_schema|test" | xargs mysqldump --column-statistics=0 -h ${host} -u${user} -p${pwd} --databases | gzip > ${dir}/$(date +%Y-%m-%d)-all.sql.gz
   
 	find $dir -type f -name "*.gz" -mtime +30 -print | xargs rm -rf
 	
