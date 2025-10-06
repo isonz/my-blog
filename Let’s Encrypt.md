@@ -2,8 +2,8 @@
 如果你还没安装过证书，可以用 Certbot 一键申请。
 以 Nginx 为例（Apache、Standalone 也类似）：
 
-
         sudo apt update
+
         sudo apt install certbot python3-certbot-nginx -y
     
         # 自动申请并配置到 Nginx
@@ -31,7 +31,7 @@ Certbot 会检查所有证书，如果快过期（一般小于 30 天），就�
 解释：
 - certbot renew --quiet → 静默模式检查和续签   
 - --post-hook "systemctl reload nginx" → 续签后重载 Nginx，让新证书生效   
-- 15 3 * * * → 每天凌晨 3:15 执行  
+- 15 3 * * * → 每天凌晨 3:15 执行 (未在剩余30天内是不会做续签请求的)   
 
 4. 验证自动续签是否生效
    可以模拟续签：
